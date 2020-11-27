@@ -70,39 +70,49 @@ io.on('connection', (socket) => {
   socket.broadcast.emit('playerConnect', socket.id, players[socket.id].color);
 
   socket.on('moveX+', () => {
-    players[socket.id].left += speed;
-    players[socket.id].walk = true;
-    players[socket.id].lookingLeft = false;
+    if (players[socket.id]) {
+      players[socket.id].left += speed;
+      players[socket.id].walk = true;
+      players[socket.id].lookingLeft = false;
 
-    socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+      socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+    }
   });
 
   socket.on('moveX-', () => {
-    players[socket.id].left -= speed;
-    players[socket.id].walk = true;
-    players[socket.id].lookingLeft = true;
+    if (players[socket.id]) {
+      players[socket.id].left -= speed;
+      players[socket.id].walk = true;
+      players[socket.id].lookingLeft = true;
 
-    socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+      socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+    }
   });
 
   socket.on('moveY+', () => {
-    players[socket.id].top -= speed;
-    players[socket.id].walk = true;
+    if (players[socket.id]) {
+      players[socket.id].top -= speed;
+      players[socket.id].walk = true;
 
-    socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+      socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+    }
   });
 
   socket.on('moveY-', () => {
-    players[socket.id].top += speed;
-    players[socket.id].walk = true;
+    if (players[socket.id]) {
+      players[socket.id].top += speed;
+      players[socket.id].walk = true;
 
-    socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+      socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+    }
   });
 
   socket.on('stopMove', () => {
-    players[socket.id].walk = false;
+    if (players[socket.id]) {
+      players[socket.id].walk = false;
 
-    socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+      socket.broadcast.emit('playerUpdate', socket.id, players[socket.id]);
+    }
   });
 
   socket.on('disconnect', () => {
