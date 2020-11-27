@@ -1,10 +1,9 @@
-import express from 'express';
-import cors from 'cors';
 import SocketIo from 'socket.io';
+import http from 'http';
+
+const httpServer = http.createServer();
 
 const PORT = process.env.PORT || 3000;
-
-const app = express();
 
 const AllColors = [
   'red',
@@ -47,11 +46,7 @@ function addColorAvailable(color: string) {
   colorsAvailable.push(color);
 }
 
-const server = app.listen(PORT, () => {
-  console.log(`Listening at port ${PORT}`);
-});
-
-const io = SocketIo(server, { serveClient: false, origins: '*' });
+const io = SocketIo(httpServer, { serveClient: false });
 
 const players: any = {};
 const speed = 6;
@@ -118,4 +113,8 @@ io.on('connection', (socket) => {
   });
 
   console.log(`${socket.id} connected`);
+});
+
+httpServer.listen(PORT, () => {
+  console.log(`Listening at port ${PORT}`);
 });
