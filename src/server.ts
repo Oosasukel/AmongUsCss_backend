@@ -6,8 +6,6 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(cors());
-
 const AllColors = [
   'red',
   'purple',
@@ -53,7 +51,7 @@ const server = app.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });
 
-const io = SocketIo(server);
+const io = SocketIo(server, { serveClient: false, origins: '*' });
 
 const players: any = {};
 const speed = 6;
