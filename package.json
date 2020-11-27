@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "ts-node-dev --transpile-only src/server.ts"
+    "start": "node build/server.js",
+    "build": "tsc -b",
+    "dev": "ts-node-dev --transpile-only src/server.ts"
   },
   "author": "",
   "license": "ISC",
