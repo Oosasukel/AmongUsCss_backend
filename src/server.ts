@@ -46,7 +46,7 @@ function addColorAvailable(color: string) {
   colorsAvailable.push(color);
 }
 
-const io = SocketIo(httpServer, { serveClient: false });
+const io = SocketIo(httpServer, { serveClient: false, origins: '*:*' });
 
 const players: any = {};
 const speed = 6;
