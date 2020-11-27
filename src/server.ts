@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import SocketIo from 'socket.io';
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 app.use(cors());
@@ -47,7 +49,7 @@ function addColorAvailable(color: string) {
   colorsAvailable.push(color);
 }
 
-const server = app.listen(3000, () => {
+const server = app.listen(PORT, () => {
   console.log('Listening at port 3000');
 });
 
