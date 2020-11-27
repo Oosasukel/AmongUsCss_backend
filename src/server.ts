@@ -50,7 +50,7 @@ function addColorAvailable(color: string) {
 }
 
 const server = app.listen(PORT, () => {
-  console.log('Listening at port 3000');
+  console.log(`Listening at port ${PORT}`);
 });
 
 const io = SocketIo(server);
